@@ -42,13 +42,10 @@ if "period" in df.columns:
 # Plot the data
 df['value'] = pd.to_numeric(df['value'], errors='coerce')
 
-# Drop rows with NaN in the 'value' column if necessary
 df = df.dropna(subset=['value'])
 
-# Ensure the values are integers for range()
 df['value'] = df['value'].astype(int)
 
-# Plotting
 plt.figure(figsize=(10, 6))
 sns.lineplot(x="period", y="value", data=df)
 plt.title("Value Over Time")
@@ -56,8 +53,7 @@ plt.xlabel("Time")
 plt.ylabel("Value")
 plt.grid(True)
 
-# Reduce the number of y-axis ticks
-plt.yticks(ticks=range(0, df["value"].max() + 1, 200))  # Adjust step size as needed
+plt.yticks(ticks=range(0, df["value"].max() + 1, 200))
 
 plt.show()
 
