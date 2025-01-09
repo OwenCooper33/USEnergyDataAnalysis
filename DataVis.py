@@ -27,7 +27,6 @@ if response.status_code == 200:
 else:
     print(f"Failed to fetch data. Status code: {response.status_code}")
 
-# Extract data from JSON
 if "response" in data and "data" in data["response"]:
     records = data["response"]["data"]
     df = pd.DataFrame(records)
@@ -35,11 +34,10 @@ if "response" in data and "data" in data["response"]:
 else:
     print("Unexpected data format.")
 
-    # Convert 'period' to datetime if it's a time-related column
+
 if "period" in df.columns:
     df["period"] = pd.to_datetime(df["period"])
 
-# Plot the data
 df['value'] = pd.to_numeric(df['value'], errors='coerce')
 
 df = df.dropna(subset=['value'])
